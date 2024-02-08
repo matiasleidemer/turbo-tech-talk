@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <script type="module">
+    import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo@7.3.0';
+  </script>
+
+  <script>
+    //document.addEventListener("turbo:before-frame-render", async (event) => {
+    //  event.preventDefault()
+
+    //  console.log("Frame will render", event)
+
+    //  event.detail.resume()
+    //})
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turbo Frames</title>
+</head>
+<body>
+  <div class="flex flex-col items-center max-w-lg mx-auto my-20 gap-10">
+    <h1 class="text-4xl font-bold">Turbo Frames</h1>
+
+    <div class="border-2 border-gray-600 w-80 mx-auto p-5">
+      <turbo-frame id="message_1">
+        <p>My message title</p>
+        <p>My message content</p>
+        <a href="/messages/edit" class="text-red-500 mt-4 block" data-turbo-frame="_top">✍️ Edit this message</a>
+      </turbo-frame>
+    </div>
+
+    <div class="border-2 border-blue-600 w-80 mx-auto p-5">
+      <turbo-frame id="message_2">
+        <h1>My message 2</h1>
+        <p>My message content 2</p>
+        <a href="/messages/edit" class="text-red-500 mt-4 block">✍️ Edit this message 2</a>
+        <!-- <a href="/page_navigation" class="text-red-500 mt-4 block" data-turbo-frame="_top">↗️ Go somewhere else</a> -->
+      </turbo-frame>
+    </div>
+
+    <div class="border-2 border-red-600 w-80 mx-auto p-5 flex flex-col gap-2">
+      <a href="/messages/edit" data-turbo-frame="message_1">Edit message 1</a>
+      <a href="/messages/edit" data-turbo-frame="message_2">Edit message 2</a>
+    </div>
+
+    <div class="border-2 border-pink-600 w-80 mx-auto mt-[800px] p-5">
+      <turbo-frame id="message_3" loading="lazy" src="/messages/edit_lazy">
+        <h1>I will start loading when you see me</h1>
+      </turbo-frame>
+    </div>
+  </div>
+</body>
+</html>

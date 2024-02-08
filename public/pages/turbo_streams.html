@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <script type="module">
+    import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo@7.3.0';
+  </script>
+
+  <script>
+     function getTurboStreamFromServer() {
+       fetch('/messages/messages_stream')
+         .then(response => response.text())
+         .then(body => Turbo.renderStreamMessage(body))
+     }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turbo Streams</title>
+</head>
+<body>
+  <div class="flex flex-col items-center max-w-lg mx-auto my-20 gap-10">
+    <h1 class="text-4xl font-bold">Turbo Streams</h1>
+
+    <div class="border-2 border-gray-600 w-80 mx-auto p-5">
+      <turbo-frame id="message_1">
+        <p>My message title</p>
+        <p>My message content</p>
+      </turbo-frame>
+    </div>
+
+    <div class="border-2 border-blue-600 w-80 mx-auto p-5">
+      <turbo-frame id="message_2">
+        <h1>My message 2</h1>
+        <p>My message content 2</p>
+      </turbo-frame>
+    </div>
+
+    <div id="foobar" class="border-2 border-cyan-600 w-80 mx-auto p-5">
+      <p>I'm not a frame</p>
+    </div>
+
+    <div class="border-2 border-red-600 w-80 mx-auto p-5 flex flex-col gap-2">
+      <a href="/messages/messages_stream">Edit messages</a>
+
+      <button onClick="getTurboStreamFromServer()">Edit messages from JS</>
+    </div>
+  </div>
+</body>
+</html>

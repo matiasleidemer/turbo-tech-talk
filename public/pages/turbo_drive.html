@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script type="module">
+    import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo@7.3.0';
+  </script>
+
+  <script>
+     document.addEventListener("turbo:before-fetch-request", async (event) => {
+       event.preventDefault()
+
+       console.log("Turbo will start fetching", event)
+
+       event.detail.resume()
+     })
+  </script>
+
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Turbo Drive</title>
+</head>
+<body>
+  <div class="flex flex-col items-center max-w-lg mx-auto my-20 gap-10">
+    <h1 class="text-4xl font-bold">Turbo Drive</h1>
+
+    <a class="text-lg text-red-500" href="/page_navigation">Page Navigation</a>
+  </div>
+</body>
+</html>
